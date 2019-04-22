@@ -1,5 +1,6 @@
-# This file is for all
 #!python3
+# This file is for all
+
 
 #import lib
 from selenium import webdriver
