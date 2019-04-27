@@ -3,7 +3,7 @@ import urllib.request, urllib.parse, urllib.error
 import ssl
 #import re
 import json
-#import time
+import time
 
 #from selenium import webdriver
 #from selenium.webdriver.common.by import By
@@ -38,16 +38,22 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-hdr = {'User-Agent': 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'}
+hdr = {'User-Agent': 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.86 Safari/536.36'}
 
 fn = input('Enter file name: ')
 fh = open(fn)
 sfh = open('saveid.txt','a')
+i = 0
 for vocab in fh:
     try:
         word_id = get_id(vocab)
         sfh.write(word_id + '\n')
+        i += 1
     except:
         print('NOT FOUND:'+ vocab)
+    if i == 1000:
+        time.sleep(5)
+        i = 0      
 sfh.close()
+
 
