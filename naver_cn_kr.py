@@ -42,14 +42,12 @@ hdr = {'User-Agent': 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3)
 
 fn = input('Enter file name: ')
 fh = open(fn)
-word_id_list = list()
+sfh = open('saveid.txt','a')
 for vocab in fh:
     try:
         word_id = get_id(vocab)
-        word_id_list.append(word_id)
+        sfh.write(word_id + '\n')
     except:
         print('NOT FOUND:'+ vocab)
-
-for id in word_id_list:
-    print(id)
+sfh.close()
 
